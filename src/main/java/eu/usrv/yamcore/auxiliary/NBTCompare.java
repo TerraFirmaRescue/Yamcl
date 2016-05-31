@@ -13,8 +13,13 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class NBTCompare
 {
-  NBTTagCompound _mCompound;
+  private NBTTagCompound _mCompound;
 
+  /**
+   * Initialize a NBT-compare instance from an ItemStack
+   * 
+   * @param pStack
+   */
   public NBTCompare( ItemStack pStack )
   {
     if( pStack != null )
@@ -23,6 +28,11 @@ public class NBTCompare
       _mCompound = new NBTTagCompound();
   }
 
+  /**
+   * Initialize a NBT-compare instance from a generated/loaded NBTTagCompound
+   * 
+   * @param pTag
+   */
   public NBTCompare( NBTTagCompound pTag )
   {
     if( pTag != null )
@@ -31,26 +41,47 @@ public class NBTCompare
       _mCompound = new NBTTagCompound();
   }
 
+  /**
+   * {@link #hasTagWithValue(String, String)}
+   */
   public boolean hasTagWithValue( String pTagName, int pValue )
   {
     return compareResultToBoolean( compareIntTag( pTagName, pValue ) );
   }
 
+  /**
+   * {@link #hasTagWithValue(String, String)}
+   */
   public boolean hasTagWithValue( String pTagName, long pValue )
   {
     return compareResultToBoolean( compareLongTag( pTagName, pValue ) );
   }
 
+  /**
+   * {@link #hasTagWithValue(String, String)}
+   */
   public boolean hasTagWithValue( String pTagName, float pValue )
   {
     return compareResultToBoolean( compareFloatTag( pTagName, pValue ) );
   }
 
+  /**
+   * {@link #hasTagWithValue(String, String)}
+   */
   public boolean hasTagWithValue( String pTagName, double pValue )
   {
     return compareResultToBoolean( compareDoubleTag( pTagName, pValue ) );
   }
 
+  /**
+   * Check if NBTTag contains given tag, with given value
+   * Please note: This function will also return false if no such tag was found!
+   * 
+   * @param pTagName Name of the NBTTag to check
+   * @param pValue Value of the NBTTag to check
+   * @return true if the value is equal to pValue, false if not
+   * 
+   */
   public boolean hasTagWithValue( String pTagName, String pValue )
   {
     return compareResultToBoolean( compareStringTag( pTagName, pValue ) );
@@ -70,6 +101,13 @@ public class NBTCompare
     return tResult;
   }
 
+  /**
+   * Compares a given TagName to a given TagValue, and returns the result as an Enum
+   * 
+   * @param pTagName The TagName to find
+   * @param pValue The value to compare the tag to, if found
+   * @return An enum-state representing the relation between pValue and stored NBT tag
+   */
   public NBTCompareResult compareBoolTag( String pTagName, boolean pValue )
   {
     NBTCompareResult tResult = NBTCompareResult.NoSuchTag;
@@ -84,6 +122,9 @@ public class NBTCompare
     return tResult;
   }
 
+  /**
+   * {@link #compareBoolTag(String, boolean)}
+   */
   public NBTCompareResult compareIntTag( String pTagName, int pValue )
   {
     NBTCompareResult tResult = NBTCompareResult.NoSuchTag;
@@ -96,6 +137,9 @@ public class NBTCompare
     return tResult;
   }
 
+  /**
+   * {@link #compareBoolTag(String, boolean)}
+   */
   public NBTCompareResult compareLongTag( String pTagName, long pValue )
   {
     NBTCompareResult tResult = NBTCompareResult.NoSuchTag;
@@ -108,6 +152,9 @@ public class NBTCompare
     return tResult;
   }
 
+  /**
+   * {@link #compareBoolTag(String, boolean)}
+   */
   public NBTCompareResult compareFloatTag( String pTagName, float pValue )
   {
     NBTCompareResult tResult = NBTCompareResult.NoSuchTag;
@@ -120,6 +167,9 @@ public class NBTCompare
     return tResult;
   }
 
+  /**
+   * {@link #compareBoolTag(String, boolean)}
+   */
   public NBTCompareResult compareDoubleTag( String pTagName, double pValue )
   {
     NBTCompareResult tResult = NBTCompareResult.NoSuchTag;
